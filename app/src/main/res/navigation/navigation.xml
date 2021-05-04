@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="edu.itesm.appchallenge.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <argument
+            android:name="correoMandar"
+            app:argType="string" />
+        <action
+            android:id="@+id/loginToFirst"
+            app:destination="@id/mainScreen" />
+        <action
+            android:id="@+id/toRegistroFragment"
+            app:destination="@id/registroFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainScreen"
+        android:name="edu.itesm.appchallenge.MainScreen"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" />
+    <fragment
+        android:id="@+id/registroFragment2"
+        android:name="edu.itesm.appchallenge.RegistroFragment"
+        android:label="fragment_registro"
+        tools:layout="@layout/fragment_registro" >
+        <action
+            android:id="@+id/registroToMain2"
+            app:destination="@id/mainScreen" />
+    </fragment>
+</navigation>

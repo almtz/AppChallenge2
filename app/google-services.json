@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "383669984039",
+    "project_id": "appchallenge2-cde3e",
+    "storage_bucket": "appchallenge2-cde3e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383669984039:android:60b1bec944e1dc6f786702",
+        "android_client_info": {
+          "package_name": "edu.itesm.appchallenge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383669984039-efdtgop7gtrt1j77sviircus6nsl8eeq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvtRVsj7Bp7F0cT9Dh0wm9uyLAm7iQHmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "383669984039-efdtgop7gtrt1j77sviircus6nsl8eeq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
