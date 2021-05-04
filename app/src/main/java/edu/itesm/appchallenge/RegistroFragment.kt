@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.parcel.Parcelize
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_registro.*
 
 @Parcelize
@@ -67,6 +68,7 @@ class RegistroFragment : Fragment() {
                     contrasena.text.toString()
                 ).addOnCompleteListener{
                     if(it.isSuccessful){
+                        iniciarSesion()
                         correo.text.clear()
                         contrasena.text.clear()
                         usuarioCreado()
@@ -76,6 +78,14 @@ class RegistroFragment : Fragment() {
                 }
             }else{Toast.makeText(this.context,"No dejes campos vacios", Toast.LENGTH_LONG).show()}
         }else{Toast.makeText(this.context,"Contraseñas no coinciden", Toast.LENGTH_LONG).show() }
+    }
+
+    fun iniciarSesion(){
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(
+                    correo.text.toString(),
+                    contrasena.text.toString()
+            ).addOnCompleteListener{
+            }
     }
 
     override fun onCreateView(
