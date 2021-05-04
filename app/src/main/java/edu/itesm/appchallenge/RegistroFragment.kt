@@ -2,7 +2,6 @@ package edu.itesm.appchallenge
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import edu.itesm.appchallenge.R
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.synthetic.main.fragment_registro.*
 
