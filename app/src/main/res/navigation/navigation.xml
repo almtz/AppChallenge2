@@ -14,24 +14,37 @@
             android:name="correoMandar"
             app:argType="string" />
         <action
-            android:id="@+id/loginToFirst"
-            app:destination="@id/mainScreen" />
-        <action
             android:id="@+id/toRegistroFragment"
             app:destination="@id/registroFragment2" />
+        <action
+            android:id="@+id/action_loginFragment_to_comicsFragment"
+            app:destination="@id/comicsFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/mainScreen"
-        android:name="edu.itesm.appchallenge.MainScreen"
-        android:label="fragment_main_screen"
-        tools:layout="@layout/fragment_main_screen" />
     <fragment
         android:id="@+id/registroFragment2"
         android:name="edu.itesm.appchallenge.RegistroFragment"
         android:label="fragment_registro"
         tools:layout="@layout/fragment_registro" >
         <action
-            android:id="@+id/registroToMain2"
-            app:destination="@id/mainScreen" />
+            android:id="@+id/action_registroFragment2_to_comicsFragment"
+            app:destination="@id/comicsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicsFragment"
+        android:name="edu.itesm.appchallenge.ComicsFragment"
+        android:label="fragment_comics"
+        tools:layout="@layout/fragment_comics" >
+        <action
+            android:id="@+id/action_comicsFragment_to_comicDetailFragment"
+            app:destination="@id/comicDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/comicDetailFragment"
+        android:name="edu.itesm.appchallenge.ComicDetailFragment"
+        android:label="fragment_comic_detail"
+        tools:layout="@layout/fragment_comic_detail" >
+        <argument
+            android:name="comic"
+            app:argType="edu.itesm.appchallenge.Comics" />
     </fragment>
 </navigation>

@@ -52,7 +52,7 @@ class LoginFragment : Fragment() {
                 if(it.isSuccessful){
                     Toast.makeText(this.context,"Bienvenido", Toast.LENGTH_LONG).show()
 
-                    val action = LoginFragmentDirections.loginToFirst()
+                    val action = LoginFragmentDirections.actionLoginFragmentToComicsFragment()
                     view?.findNavController()?.navigate(action)
 
                 }else{

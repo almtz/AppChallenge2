@@ -54,7 +54,7 @@ class RegistroFragment : Fragment() {
         val builder = AlertDialog.Builder(this.requireContext())
         with(builder){
             Toast.makeText(this.context,"Usuario creado con éxito", Toast.LENGTH_LONG).show()
-            val action = RegistroFragmentDirections.registroToMain2()
+            val action = RegistroFragmentDirections.actionRegistroFragment2ToComicsFragment()
             view?.findNavController()?.navigate(action)
         }
     }
