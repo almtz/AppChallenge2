@@ -6,7 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.comics_item.*
 import kotlinx.android.synthetic.main.fragment_comic_detail.*
 
@@ -21,35 +26,60 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ComicDetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    private val args by navArgs<ComicDetailFragmentArgs>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val args by navArgs<ComicDetailFragmentArgs>()
+    private lateinit var database: FirebaseDatabase
+    private lateinit var reference: DatabaseReference
+    private lateinit var bundle: Bundle
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        database = FirebaseDatabase.getInstance()
+        reference = database.getReference("comics")
+        bundle = Bundle()
         return inflater.inflate(R.layout.fragment_comic_detail, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        Log.d("Funciona porfa: ", args.toString())
+        AgregaAlCarrito.setOnClickListener{
+            addComic()
+            AgregaAlCarrito.text = "Comic agregado"
+        }
+
+        IrAlCarrito.setOnClickListener{
+            Log.i("boton", "lo pique")
+            val action = ComicDetailFragmentDirections.actionComicDetailFragmentToCarritoFragment()
+            IrAlCarrito.findNavController().navigate(action)
+        }
+
         comicDetailTitle.text = args.comic.title
         if(args.comic.desc != "null") {
             comicDetailDesc.text = args.comic.desc
         } else {
             comicDetailDesc.text = "No tiene descripción"
+        }
+    }
+
+    public fun addComic(){
+
+        val titulo = args.comic.title
+        val descripcion = args.comic.desc
+        if(titulo!!.isNotEmpty() && titulo!!.isNotBlank()){
+        val id = reference.push().key
+        val comic = Comics(
+            id.toString(),
+            titulo.toString(),
+            descripcion.toString()
+        )
+
+        reference.child(id!!).setValue(comic)
+            bundle.putString("edu_itesm_appchallenge", "added_comic")
+        }else{
+            Toast.makeText(context, "error en titulo o categoria!", Toast.LENGTH_LONG).show()
         }
     }
 

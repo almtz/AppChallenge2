@@ -46,5 +46,13 @@
         <argument
             android:name="comic"
             app:argType="edu.itesm.appchallenge.Comics" />
+        <action
+            android:id="@+id/action_comicDetailFragment_to_carritoFragment"
+            app:destination="@id/carritoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/carritoFragment"
+        android:name="edu.itesm.appchallenge.CarritoFragment"
+        android:label="fragment_carrito"
+        tools:layout="@layout/fragment_carrito" />
 </navigation>
