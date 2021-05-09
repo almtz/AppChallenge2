@@ -10,8 +10,10 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.comics_item.*
 import kotlinx.android.synthetic.main.fragment_comic_detail.*
@@ -39,7 +41,8 @@ class ComicDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         database = FirebaseDatabase.getInstance()
-        reference = database.getReference("comics")
+        val usuario = Firebase.auth.currentUser
+        reference = database.getReference("carrito/${usuario.uid}/${args.comic.id}")
         bundle = Bundle()
         return inflater.inflate(R.layout.fragment_comic_detail, container, false)
     }
@@ -69,18 +72,20 @@ class ComicDetailFragment : Fragment() {
 
         val titulo = args.comic.title
         val descripcion = args.comic.desc
+        val path = args.comic.path
         if(titulo!!.isNotEmpty() && titulo!!.isNotBlank()){
         val id = reference.push().key
         val comic = Comics(
             id.toString(),
             titulo.toString(),
-            descripcion.toString()
+            descripcion.toString(),
+                path.toString()
         )
 
         reference.child(id!!).setValue(comic)
             bundle.putString("edu_itesm_appchallenge", "added_comic")
         }else{
-            Toast.makeText(context, "error en titulo o categoria!", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "error al agregar el comic!", Toast.LENGTH_LONG).show()
         }
     }
 

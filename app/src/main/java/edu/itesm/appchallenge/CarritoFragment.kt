@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_carrito.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -63,7 +65,8 @@ class CarritoFragment : Fragment() {
     }
 
     private fun deleteComic(comic: Comics){
-        val referencia = FirebaseDatabase.getInstance().getReference("comics/$comic.title")
+        val usuario = Firebase.auth.currentUser
+        val referencia = FirebaseDatabase.getInstance().getReference("carrito/${usuario.uid}/${comic.id}")
         referencia.removeValue()
     }
 
@@ -82,7 +85,8 @@ class CarritoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         database = FirebaseDatabase.getInstance()
-        reference = database.getReference("comics")
+        val usuario = Firebase.auth.currentUser
+        reference = database.getReference("carrito/${usuario.uid}")
         getComics()
     }
 

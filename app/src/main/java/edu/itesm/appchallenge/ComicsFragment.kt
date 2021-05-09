@@ -85,7 +85,7 @@ class ComicsFragment : Fragment() {
                             path = image.getString("path")
                         }
 
-                        comicList.add(Comics(title, description, path))
+                        comicList.add(Comics("",title, description, path))
                     }
                     adapter = ComicsAdapter(comicList, context)
                 } catch (e : Exception ) {

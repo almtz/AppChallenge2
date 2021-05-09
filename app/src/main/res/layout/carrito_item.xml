@@ -18,7 +18,7 @@
             android:text="Title" />
 
         <Button
-            android:id="@+id/BorrarDeCarrito"
+            android:id="@+id/borrarButton"
             android:layout_width="121dp"
             android:layout_height="wrap_content"
             android:text="Borrar" />
