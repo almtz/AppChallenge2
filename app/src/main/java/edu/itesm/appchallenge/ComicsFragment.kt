@@ -87,7 +87,6 @@ class ComicsFragment : Fragment() {
 
                         comicList.add(Comics(title, description, path))
                     }
-                    Log.d(TAG, comicList.toString())
                     adapter = ComicsAdapter(comicList, context)
                 } catch (e : Exception ) {
                     e.printStackTrace();

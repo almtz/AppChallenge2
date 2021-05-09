@@ -1,6 +1,8 @@
 package edu.itesm.appchallenge
 
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 
 class ComicsAdapter(private val comicsList: List<Comics>, private val context: Context): RecyclerView.Adapter<ComicsAdapter.ComicsViewHolder>() {
     inner class ComicsViewHolder(item: View) : RecyclerView.ViewHolder(item) {
@@ -25,7 +27,10 @@ class ComicsAdapter(private val comicsList: List<Comics>, private val context: C
     override fun onBindViewHolder(holder: ComicsAdapter.ComicsViewHolder, position: Int) {
         val comic = comicsList[position]
         holder.title.text = comic.title
-        Glide.with(context).load("${comic.path}/portrait_xlarge.jpg\n").into(holder.comicCover)
+        Picasso.get().isLoggingEnabled = true
+        val path = "${comic.path}/standard_large.jpg"
+        if(path != "/standard_large.jpg")
+            Picasso.get().load(path).fit().into(holder.comicCover)
         holder.itemView.setOnClickListener {
             val action = ComicsFragmentDirections.actionComicsFragmentToComicDetailFragment(comic)
             holder.itemView.findNavController().navigate(action)

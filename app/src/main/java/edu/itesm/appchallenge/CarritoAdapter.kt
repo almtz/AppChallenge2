@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 
 class CarritoAdapter(private val carritoList: MutableList<Comics>, private val context: Context): RecyclerView.Adapter<CarritoAdapter.CarritoViewHolder>(){
 

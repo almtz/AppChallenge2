@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.comics_item.*
 import kotlinx.android.synthetic.main.fragment_comic_detail.*
 
@@ -51,7 +52,6 @@ class ComicDetailFragment : Fragment() {
         }
 
         IrAlCarrito.setOnClickListener{
-            Log.i("boton", "lo pique")
             val action = ComicDetailFragmentDirections.actionComicDetailFragmentToCarritoFragment()
             IrAlCarrito.findNavController().navigate(action)
         }
@@ -62,6 +62,7 @@ class ComicDetailFragment : Fragment() {
         } else {
             comicDetailDesc.text = "No tiene descripción"
         }
+        Picasso.get().load("${args.comic.path}/standard_medium.jpg").into(comicDetailCover)
     }
 
     public fun addComic(){
